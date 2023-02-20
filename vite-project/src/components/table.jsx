@@ -4,11 +4,9 @@ import { useState, useEffect } from "react";
 export const Table = () => {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
     fetch("http://localhost:3000/users")
       .then((res) => res.json())
       .then((data) => setData(data));
-  }, []);
 
   // console.log(data);
 
@@ -49,16 +47,16 @@ export const Table = () => {
         </a>
       </div>
       {data.length > 0 &&
-        data.map((el) => {
+        data.map((el, idx) => {
           return (
             <>
-              <div className="todo-item">
+              <div key={idx} className="todo-item">
                 <div className="checker">
                   <span className="">
                     <input type="checkbox" />
                   </span>
                 </div>
-                <span>{el.name}</span>
+                <span>{el.task}</span>
                 <a
                   href="javascript:void(0);"
                   className="float-right remove-todo-item"

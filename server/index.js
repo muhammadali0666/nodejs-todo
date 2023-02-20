@@ -33,7 +33,7 @@ const server = http.createServer((req, res) => {
         res.writeHead(201, options);
         res.end(
           JSON.stringify({
-            msg: "Added new user!",
+            msg: "Added new task!",
           })
         );
       });

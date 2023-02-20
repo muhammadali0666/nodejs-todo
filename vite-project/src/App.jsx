@@ -1,18 +1,22 @@
-import { useState,useEffect } from "react";
+import { useRef } from "react";
 import { Navbar } from "./components/navbar";
 import { Table } from "./components/table";
 
 function App() {
+  
+  const createCouse = (e) => {
+    e.preventDefault();
 
-  const [data, setData] = useState("")
+    const {task} = e.target;
 
-  // console.log(data);
-
-  useEffect(() => {
-    document.getElementById("input")?.addEventListener("keypress", function (e) {
-      console.log(e);
+    fetch("http://localhost:3000/users_post", {
+      method: "POST",
+      body: JSON.stringify({
+        task: task.value,
+      }),
     })
-  })
+      .then((res) => res.json())
+  };
 
 
   return (
@@ -22,16 +26,13 @@ function App() {
           <div className="col-md-12">
             <div className="card card-white">
               <div className="card-body">
-                <form action="javascript:void(0);">
+                <form action="javascript:void(0);" onSubmit={(e) => createCouse(e)}>
                   <input
                     type="text"
                     className="form-control add-task"
                     placeholder="New Task..."
                     id="input"
-                    value={data}
-                    onChange={(e) => {
-                      setData(e.target.value)
-                    }}
+                    name="task"
                   />
                 </form>
                 <Navbar />
