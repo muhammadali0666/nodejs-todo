@@ -1,21 +1,22 @@
-import React from 'react'
-import {Navbar} from "../../components/navbar"
-import {Table} from "../../components/table"
+import { Navbar } from "../../components/navbar";
+import { Table } from "../../components/table";
+import { useState, useEffect } from "react";
 
 export const Home = () => {
+
+  const [isComplete, setIsComplete] = useState(false)
 
   const createCouse = (e) => {
     e.preventDefault();
 
-    const {task} = e.target;
+    const { task } = e.target;
 
     fetch("http://localhost:3000/users_post", {
       method: "POST",
       body: JSON.stringify({
         task: task.value,
       }),
-    })
-      .then((res) => res.json())
+    }).then((res) => res.json());
   };
 
   return (
@@ -25,7 +26,10 @@ export const Home = () => {
           <div className="col-md-12">
             <div className="card card-white">
               <div className="card-body">
-                <form action="javascript:void(0);" onSubmit={(e) => createCouse(e)}>
+                <form
+                  action="javascript:void(0);"
+                  onSubmit={(e) => createCouse(e)}
+                >
                   <input
                     type="text"
                     className="form-control add-task"
@@ -42,5 +46,5 @@ export const Home = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

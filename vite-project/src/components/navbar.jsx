@@ -17,7 +17,7 @@ export const Navbar = () => {
         </li>
         <li role="presentation" className="nav-item completed-task">
           <NavLink className="nav-link" to="/complete">
-              Complete
+            Complete
           </NavLink>
         </li>
       </ul>
