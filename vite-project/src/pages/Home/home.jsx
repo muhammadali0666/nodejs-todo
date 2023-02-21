@@ -1,10 +1,8 @@
 import { Navbar } from "../../components/navbar";
 import { Table } from "../../components/table";
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 
 export const Home = () => {
-
-  const [isComplete, setIsComplete] = useState(false)
 
   const createCouse = (e) => {
     e.preventDefault();
