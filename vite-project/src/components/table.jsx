@@ -1,15 +1,28 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import "./index.css";
+import { v4 as uuidv4 } from "uuid";
 
 export const Table = () => {
   const [data, setData] = useState([]);
 
-  useEffect(() => {}, []);
+  const [complete, setComplete] = useState([]);
 
-  console.log(isComplete);
-  fetch("http://localhost:3000/users")
-    .then((res) => res.json())
-    .then((data) => setData(data));
+  if(data.val === false) {
+    setComplete()
+  }
+
+  const handleClick = () => {};
+
+  // console.log(data);
+  console.log(complete);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/users")
+      .then((res) => res.json())
+      .then((data) => setData(data));
+      setComplete(data)
+  }, []);
 
   return (
     <div className="todo-list">
@@ -42,19 +55,35 @@ export const Table = () => {
             <input type="checkbox" />
           </span>
         </div>
-        <span>Organize office main department</span>
+        <span value={complete} onClick={handleClick()}>
+          Organize office main department
+        </span>
         <a href="javascript:void(0);" className="float-right remove-todo-item">
           <i className="icon-close"></i>
         </a>
       </div>
       {data.length > 0 &&
-        data.map((el, idx) => {
+        data.map((el) => {
           return (
             <>
-              <div key={idx} className="todo-item">
+              <div className="todo-item">
                 <div className="checker">
-                  <span className="">
-                    <input type="checkbox" />
+                  <span
+                    className=""
+                    onClick={() => {
+                      handleClick();
+                    }}
+                  >
+                    <input
+                      id={`${uuidv4()}`}
+                      className="throw__line"
+                      type="checkbox"
+                      value={complete}
+                      // onClick={(e) => {
+                      //   setComplete(e.target.value)
+                      // }}
+                    />
+                    {/* {uuidv4()} */}
                   </span>
                 </div>
                 <span>{el.task}</span>

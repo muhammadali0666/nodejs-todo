@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { Navbar } from "../../components/navbar";
 import { Table } from "../../components/table";
 // import { useState, useEffect } from "react";
 
 export const Home = () => {
+
+  const [val, setVal] = useState(false)
 
   const createCouse = (e) => {
     e.preventDefault();
@@ -13,6 +16,7 @@ export const Home = () => {
       method: "POST",
       body: JSON.stringify({
         task: task.value,
+        val: val
       }),
     }).then((res) => res.json());
   };
